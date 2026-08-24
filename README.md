@@ -19,9 +19,3 @@ In order to execute this project you must follow the steps below:
 
 All execution artifacts can be found in `./coverage`, if you want to remove these files run `npm run clean`.
 
-## Project Structure
-</br>
-<ul>
-    <li>src: source code</li>
-    <li>test: unit test files</li>
-</ul>
