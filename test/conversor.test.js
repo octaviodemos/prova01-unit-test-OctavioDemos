@@ -1,91 +1,229 @@
 const Conversor = require("../src/conversor");
 
-describe("Conversor", () => {
+describe("conversor", () => {
   let conv;
 
   beforeEach(() => {
     conv = new Conversor();
   });
 
-  test("conversões de temperatura (C <-> F)", () => {
+  test("deve converter celsius para fahrenheit", () => {
+    // Arrange
+    const temperatura = 0;
 
-    const fFrom0 = conv.celsiusParaFahrenheit(0);
-    const cFrom32 = conv.fahrenheitParaCelsius(32);
-    const fFrom100 = conv.celsiusParaFahrenheit(100);
+    // Act
+    const resultado = conv.celsiusParaFahrenheit(temperatura);
 
-    expect(fFrom0).toBe(32);
-    expect(cFrom32).toBe(0);
-    expect(fFrom100).toBe(212);
+    // Assert
+    expect(resultado).toBe(32);
   });
 
-  test("metros <-> centimetros", () => {
+  test("deve converter fahrenheit para celsius", () => {
+    // Arrange
+    const temperatura = 32;
 
-    const cm = conv.metrosParaCentimetros(1);
-    const m = conv.centimetrosParaMetros(250);
+    // Act
+    const resultado = conv.fahrenheitParaCelsius(temperatura);
 
-    expect(cm).toBe(100);
-    expect(m).toBe(2.5);
+    // Assert
+    expect(resultado).toBe(0);
   });
 
-  test("quilogramas <-> gramas", () => {
+  test("deve converter metros para centimetros", () => {
+    // Arrange
+    const metros = 1;
 
-    const g = conv.quilosParaGramas(2);
-    const kg = conv.gramasParaQuilos(500);
+    // Act
+    const resultado = conv.metrosParaCentimetros(metros);
 
-    expect(g).toBe(2000);
-    expect(kg).toBe(0.5);
+    // Assert
+    expect(resultado).toBe(100);
   });
 
-  test("tempo: horas, minutos, segundos, dias, semanas", () => {
+  test("deve converter centimetros para metros", () => {
+    // Arrange
+    const centimetros = 250;
 
-    const minutos = conv.horasParaMinutos(2);
-    const segundos = conv.minutosParaSegundos(3);
-    const horas = conv.diasParaHoras(1);
-    const dias = conv.semanasParaDias(2);
+    // Act
+    const resultado = conv.centimetrosParaMetros(centimetros);
 
-    expect(minutos).toBe(120);
-    expect(segundos).toBe(180);
-    expect(horas).toBe(24);
-    expect(dias).toBe(14);
+    // Assert
+    expect(resultado).toBe(2.5);
   });
 
-  test("moeda: reais <-> centavos", () => {
+  test("deve converter quilos para gramas", () => {
+    // Arrange
+    const quilos = 2;
 
-    const centavos = conv.reaisParaCentavos(1.5);
-    const reais = conv.centavosParaReais(250);
+    // Act
+    const resultado = conv.quilosParaGramas(quilos);
 
-    expect(centavos).toBe(150);
-    expect(reais).toBe(2.5);
+    // Assert
+    expect(resultado).toBe(2000);
   });
 
-  test("distância: km <-> m e polegadas <-> cm", () => {
+  test("deve converter gramas para quilos", () => {
+    // Arrange
+    const gramas = 500;
 
-    const metros = conv.kmParaMetros(1);
-    const kms = conv.metrosParaKm(500);
-    const cmFromPol = conv.polegadasParaCm(1);
-    const polFromCm = conv.cmParaPolegadas(2.54);
+    // Act
+    const resultado = conv.gramasParaQuilos(gramas);
 
-    expect(metros).toBe(1000);
-    expect(kms).toBe(0.5);
-    expect(cmFromPol).toBeCloseTo(2.54);
-    expect(polFromCm).toBeCloseTo(1);
+    // Assert
+    expect(resultado).toBe(0.5);
   });
 
-  test("anos -> meses e meses -> dias (estimativa)", () => {
+  test("deve converter horas para minutos", () => {
+    // Arrange
+    const horas = 2;
 
-    const meses = conv.anosParaMeses(2);
-    const dias = conv.mesesParaDias(1);
+    // Act
+    const resultado = conv.horasParaMinutos(horas);
 
-    expect(meses).toBe(24);
-    expect(dias).toBe(30);
+    // Assert
+    expect(resultado).toBe(120);
   });
 
-  test("bytes <-> KB", () => {
+  test("deve converter minutos para segundos", () => {
+    // Arrange
+    const minutos = 3;
 
-    const kb = conv.bytesParaKb(1024);
-    const bytes = conv.kbParaBytes(1);
+    // Act
+    const resultado = conv.minutosParaSegundos(minutos);
 
-    expect(kb).toBe(1);
-    expect(bytes).toBe(1024);
+    // Assert
+    expect(resultado).toBe(180);
+  });
+
+  test("deve converter dias para horas", () => {
+    // Arrange
+    const dias = 1;
+
+    // Act
+    const resultado = conv.diasParaHoras(dias);
+
+    // Assert
+    expect(resultado).toBe(24);
+  });
+
+  test("deve converter semanas para dias", () => {
+    // Arrange
+    const semanas = 2;
+
+    // Act
+    const resultado = conv.semanasParaDias(semanas);
+
+    // Assert
+    expect(resultado).toBe(14);
+  });
+
+  test("deve converter reais para centavos", () => {
+    // Arrange
+    const reais = 1.5;
+
+    // Act
+    const resultado = conv.reaisParaCentavos(reais);
+
+    // Assert
+    expect(resultado).toBe(150);
+  });
+
+  test("deve converter centavos para reais", () => {
+    // Arrange
+    const centavos = 250;
+
+    // Act
+    const resultado = conv.centavosParaReais(centavos);
+
+    // Assert
+    expect(resultado).toBe(2.5);
+  });
+
+  test("deve converter quilometros para metros", () => {
+    // Arrange
+    const quilometros = 1;
+
+    // Act
+    const resultado = conv.kmParaMetros(quilometros);
+
+    // Assert
+    expect(resultado).toBe(1000);
+  });
+
+  test("deve converter metros para quilometros", () => {
+    // Arrange
+    const metros = 500;
+
+    // Act
+    const resultado = conv.metrosParaKm(metros);
+
+    // Assert
+    expect(resultado).toBe(0.5);
+  });
+
+  test("deve converter polegadas para centimetros", () => {
+    // Arrange
+    const polegadas = 1;
+
+    // Act
+    const resultado = conv.polegadasParaCm(polegadas);
+
+    // Assert
+    expect(resultado).toBeCloseTo(2.54);
+  });
+
+  test("deve converter centimetros para polegadas", () => {
+    // Arrange
+    const centimetros = 2.54;
+
+    // Act
+    const resultado = conv.cmParaPolegadas(centimetros);
+
+    // Assert
+    expect(resultado).toBeCloseTo(1);
+  });
+
+  test("deve converter anos para meses", () => {
+    // Arrange
+    const anos = 2;
+
+    // Act
+    const resultado = conv.anosParaMeses(anos);
+
+    // Assert
+    expect(resultado).toBe(24);
+  });
+
+  test("deve converter meses para dias", () => {
+    // Arrange
+    const meses = 1;
+
+    // Act
+    const resultado = conv.mesesParaDias(meses);
+
+    // Assert
+    expect(resultado).toBe(30);
+  });
+
+  test("deve converter bytes para kilobytes", () => {
+    // Arrange
+    const bytes = 1024;
+
+    // Act
+    const resultado = conv.bytesParaKb(bytes);
+
+    // Assert
+    expect(resultado).toBe(1);
+  });
+
+  test("deve converter kilobytes para bytes", () => {
+    // Arrange
+    const kilobytes = 1;
+
+    // Act
+    const resultado = conv.kbParaBytes(kilobytes);
+
+    // Assert
+    expect(resultado).toBe(1024);
   });
 });
